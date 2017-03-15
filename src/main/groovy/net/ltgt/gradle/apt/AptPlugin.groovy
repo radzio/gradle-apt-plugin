@@ -221,8 +221,8 @@ class AptPlugin implements Plugin<Project> {
           compilerConfiguration.append(new NodeBuilder().annotationProcessing() {
             profile(name: 'Default', enabled: true, default: true) {
               // XXX: this assumes that all subprojects use the same name for their buildDir
-              sourceOutputDir(name: "${project.relativePath(project.buildDir)}/generated/source/apt/$SourceSet.MAIN_SOURCE_SET_NAME")
-              sourceTestOutputDir(name: "${project.relativePath(project.buildDir)}/generated/source/apt/$SourceSet.TEST_SOURCE_SET_NAME")
+              sourceOutputDir(name: "${project.relativePath(project.buildDir)}/generated/source/kapt/$SourceSet.MAIN_SOURCE_SET_NAME")
+              sourceTestOutputDir(name: "${project.relativePath(project.buildDir)}/generated/source/kapt/$SourceSet.TEST_SOURCE_SET_NAME")
               outputRelativeToContentRoot(value: true)
               processorPath(useClasspath: true)
             }
@@ -346,7 +346,7 @@ class AptPlugin implements Plugin<Project> {
     AptSourceSetOutputConvention(Project project, SourceSet sourceSet) {
       this.project = project
       this.sourceSet = sourceSet
-      this.generatedSourcesDir = { project.file("${project.buildDir}/generated/source/apt/${sourceSet.name}") }
+      this.generatedSourcesDir = { project.file("${project.buildDir}/generated/source/kapt/${sourceSet.name}") }
     }
 
     private Object generatedSourcesDir
